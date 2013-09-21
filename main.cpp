@@ -71,11 +71,11 @@ typedef vector < row > matrix;
 
 struct trie
 {
-	trie *next[10];
+	trie *next[26];
 	bool end;
 	trie()
 	{
-		for(int i=0;i<10;i++)
+		for(int i=0;i<26;i++)
 		next[i]=NULL;
 		end=0;
 	}
@@ -84,49 +84,84 @@ struct trie
 int main()
 {
 	LL T;
-	bool flag;
-	sl(T);
+	LL N,i,flag=0,L;
+	trie *head,*tail;
 	char str[20];
-	while(T--)
+	while(1)
 	{
-		flag=1;
-		LL N,i;
-		trie *head,*tail;
 		head=new trie;
+		pf("Enter number of words or -1 to exit\n");
 		sl(N);
+		if(N<=0)
+		break;
 		while(N--)
 		{
+			tail=head;
 			ss(str);
-			if(flag)
+			for(i = 0; str[i]; i++)
 			{
-				tail=head;
-				for(i=0;i<strlen(str);i++)
+				str[i] = tolower(str[i]);
+			}
+			L=strlen(str);
+			tail=head;
+			for(i=0;i<L;i++)
+			{
+				char p=str[i];
+				if(tail->next[p]==NULL)
 				{
-					if(tail->end)
-					{
-						flag=0;
-						break;
-					}
-					LL p=str[i]-'0';
-					if(tail->next[p]==NULL)
-						tail->next[p]=new trie;
-					tail=tail->next[p];
+					pf("haha %c\n",p);
+					tail->next[p]=new trie;
 				}
-				tail->end=1;
-				for(i=0;i<10;i++)
+				else
 				{
-					if(tail->next[i])
-					{
-						flag=0;
-						break;
-					}
+					pf("already present\n");
 				}
+				if(i==L-1)
+				{
+					pf("LOL %c\n",p);
+					tail->end=1;
+				}
+				tail=tail->next[p];
 			}
 		}
-		if(flag)
-		pf("YES\n");
-		else
-		pf("NO\n");
+		while(1)
+		{
+			pf("Enter the word you want to search or -1 to exit\n");
+			ss(str);
+			if((str[0]=='-')&&(str[1]=='1'))
+			break;
+			for(i = 0; str[i]; i++)
+			{
+				str[i] = tolower(str[i]);
+			}
+			//pf("%s\n",str);
+			tail=head;
+			for(i=0;i<strlen(str);i++)
+			{
+				flag=0;
+				char p=str[i];
+				if(tail->next[p]==NULL)
+				{
+					pf("haha %c\n",p);
+					flag=-1;
+					break;
+				}
+				else
+				{
+					pf("already present\n");
+				}
+				if(tail->end)
+				{
+					pf("LOL %c\n",p);
+					flag=1;
+				}
+				tail=tail->next[p];
+			}
+			if(flag==1)
+			pf("String found\n");
+			else
+			pf("String Not found\n");
+		}
 	}
 	return 0;
 }
