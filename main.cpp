@@ -84,15 +84,6 @@ struct trie
 	}
 };
 
-vector<string> cache[10];  // Assuming Average Length to be 8
-
-/* Using cache so that in the case when string length is 20 or something 
- * and is called recently then still it should give result in 
- * O(10) that is constant which makes it independent of the the length
- * of the string. In Cache I am storing only those string whose length 
- * are greater than the average length because otherwise trie would 
- * be a better choice*/
-
 int main()
 {
 	LL T;
@@ -132,8 +123,6 @@ int main()
 				tail=tail->next[p];
 			}
 		}
-		cache.clear(); // Clearing out the cache
-		LL cachelen=1;
 		while(1)
 		{
 			pf("Enter the word you want to search or -1 to exit\n");
@@ -145,34 +134,11 @@ int main()
 			{
 				str[i] = tolower(str[i]);
 			}
+			string st=str;
 			tail=head;
 			L=strlen(str); // Length of string
 			flag=0; // Initializing Flag value
-			if(L>=10)
-			{
-				if(cache.size()<10)
-				{
-					cache.pb(str);
-					cachelen+=1;
-					cachelen%=10;
-				}
-				else
-				{
-					cache[cachelen]=str;
-					cachelen+=1;
-					cachelen%=10;
-				}
-				ITER(i,cache)
-				{
-					if(*i==str)
-					{
-						pf("Found\n");
-						flag=1;
-						break;
-					}
-				}
-			}
-			if(flag!=0)
+			if(flag==0)
 			{
 				for(i=0;i<L;i++)
 				/* Using L instead of strlen(str) to make code faster else 
