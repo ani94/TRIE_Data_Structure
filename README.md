@@ -18,3 +18,10 @@ instead, its position in the tree defines the key with which it is associated. A
 have a common prefix of the string associated with that node, and the root is associated with the empty string.
 Values are normally not associated with every node, only with leaves and some inner nodes that correspond to 
 keys of interest.
+
+
+File Structure
+===============
+
+main.cpp - User Interface code File  - Trie Implemented
+code_for_inp.cpp - File Oriented Main code File - Trie + Cache Implemented
