@@ -84,19 +84,19 @@ struct trie
 int main()
 {
 	LL T;
-	LL N,i,flag=0,L;
-	trie *head,*tail;
+	LL N,i,L,flag;
 	char str[20];
 	while(1)
 	{
+		trie *head,*tail;
 		head=new trie;
 		pf("Enter number of words or -1 to exit\n");
 		sl(N);
 		if(N<=0)
 		break;
+		//pf("New trie\n");
 		while(N--)
 		{
-			tail=head;
 			ss(str);
 			for(i = 0; str[i]; i++)
 			{
@@ -104,21 +104,22 @@ int main()
 			}
 			L=strlen(str);
 			tail=head;
+			//pf("searching start from beginning\n");
 			for(i=0;i<L;i++)
 			{
-				char p=str[i];
-				if(tail->next[p]==NULL)
+				char p=str[i]-'a';	
+				if((tail->next[p])!=NULL)
 				{
-					pf("haha %c\n",p);
-					tail->next[p]=new trie;
+					//pf("already present\n");
 				}
-				else
+				if((tail->next[p])==NULL)
 				{
-					pf("already present\n");
+					//pf("haha %c\n",p);
+					tail->next[p]=new trie;
 				}
 				if(i==L-1)
 				{
-					pf("LOL %c\n",p);
+				//	pf("LOL %c\n",p);
 					tail->end=1;
 				}
 				tail=tail->next[p];
@@ -139,20 +140,20 @@ int main()
 			for(i=0;i<strlen(str);i++)
 			{
 				flag=0;
-				char p=str[i];
+				char p=str[i]-'a';
 				if(tail->next[p]==NULL)
 				{
-					pf("haha %c\n",p);
+			//		pf("haha %c\n",p);
 					flag=-1;
 					break;
 				}
 				else
 				{
-					pf("already present\n");
+				//	pf("already present\n");
 				}
 				if(tail->end)
 				{
-					pf("LOL %c\n",p);
+					//pf("LOL %c\n",p);
 					flag=1;
 				}
 				tail=tail->next[p];
