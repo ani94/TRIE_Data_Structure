@@ -94,7 +94,6 @@ int main()
 		sl(N);
 		if(N<=0)
 		break;
-		//pf("New trie\n");
 		while(N--)
 		{
 			ss(str);
@@ -104,22 +103,15 @@ int main()
 			}
 			L=strlen(str);
 			tail=head;
-			//pf("searching start from beginning\n");
 			for(i=0;i<L;i++)
 			{
 				char p=str[i]-'a';	
-				if((tail->next[p])!=NULL)
-				{
-					//pf("already present\n");
-				}
 				if((tail->next[p])==NULL)
 				{
-					//pf("haha %c\n",p);
 					tail->next[p]=new trie;
 				}
 				if(i==L-1)
 				{
-				//	pf("LOL %c\n",p);
 					tail->end=1;
 				}
 				tail=tail->next[p];
@@ -135,7 +127,6 @@ int main()
 			{
 				str[i] = tolower(str[i]);
 			}
-			//pf("%s\n",str);
 			tail=head;
 			for(i=0;i<strlen(str);i++)
 			{
@@ -143,17 +134,11 @@ int main()
 				char p=str[i]-'a';
 				if(tail->next[p]==NULL)
 				{
-			//		pf("haha %c\n",p);
 					flag=-1;
 					break;
 				}
-				else
-				{
-				//	pf("already present\n");
-				}
 				if(tail->end)
 				{
-					//pf("LOL %c\n",p);
 					flag=1;
 				}
 				tail=tail->next[p];
