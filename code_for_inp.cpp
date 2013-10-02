@@ -84,8 +84,8 @@ struct trie
 	}
 };
 
-vector<string> cache;  // Assuming Average Length to be 8 we will be 
-					  //taking maximum length of cache as 10
+map<string,int> cache;  // Assuming Average Length to be 8 we will be 
+						//taking maximum length of cache as 10
 
 /* Using cache so that in the case when string length is 20 or something 
  * and is called recently then still it should give result in 
@@ -136,7 +136,6 @@ int main()
 			}
 		}
 		cache.clear(); // Clearing out the cache
-		LL cachelen=1;
 		LL search;
 		pf("Enter number of searches\n");
 		sl(search);
@@ -151,32 +150,18 @@ int main()
 			}
 			string st=str;
 			tail=head;
+			LL flag1=0; // For checking whether element found in cache
 			L=strlen(str); // Length of string
 			flag=0; // Initializing Flag value
 			if(L>=10)
 			{
-				if(cache.size()<10)
+				if(cache.find(str)!=cache.end())
 				{
-					cache.pb(st);
-					cachelen+=1;
-					cachelen%=10;
-				}
-				else
-				{
-					cache[cachelen]=st;
-					cachelen+=1;
-					cachelen%=10;
-				}
-				ITER(i,cache)
-				{
-					if(*i==str)
-					{
-						flag=1;
-						break;
-					}
+					flag1=1;
+					flag=cache[str];
 				}
 			}
-			if(flag==0)
+			if(flag1==0)
 			{
 				for(i=0;i<L;i++)
 				/* Using L instead of strlen(str) to make code faster else 
@@ -197,9 +182,13 @@ int main()
 				}
 			}
 			if(flag==1)
-			pf("String found\n");
+			{
+				pf("String found\n");
+			}
 			else
 			pf("String Not found\n");
+			if(L>10)
+			cache[str]=flag;
 		}
 	}
 	return 0;
