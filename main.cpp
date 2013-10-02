@@ -71,6 +71,9 @@ typedef vector < row > matrix;
 
 struct trie
 {
+	/* Structure of Trie Consisting of consisting of 26 pointers ,
+	 *  one for each charachter and end denoting whether it is end or not
+	 */
 	trie *next[26];
 	bool end;
 	trie()
@@ -106,7 +109,7 @@ int main()
 			for(i=0;i<L;i++)
 			{
 				char p=str[i]-'a';	
-				if((tail->next[p])==NULL)
+				if((tail->next[p])==NULL)	// Making a new trie if no branch exists
 				{
 					tail->next[p]=new trie;
 				}
@@ -137,7 +140,7 @@ int main()
 					flag=-1;
 					break;
 				}
-				if(tail->end)
+				if(tail->end)	// Checking whether word found or not
 				{
 					flag=1;
 				}
