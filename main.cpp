@@ -84,6 +84,15 @@ struct trie
 	}
 };
 
+vector<string> cache[10];  // Assuming Average Length to be 8
+
+/* Using cache so that in the case when string length is 20 or something 
+ * and is called recently then still it should give result in 
+ * O(10) that is constant which makes it independent of the the length
+ * of the string. In Cache I am storing only those string whose length 
+ * are greater than the average length because otherwise trie would 
+ * be a better choice*/
+
 int main()
 {
 	LL T;
@@ -101,12 +110,15 @@ int main()
 		{
 			ss(str);
 			for(i = 0; str[i]; i++)
+			/* Converting string to Lower case */
 			{
 				str[i] = tolower(str[i]);
 			}
 			L=strlen(str);
 			tail=head;
-			for(i=0;i<L;i++)
+			for(i=0;i<L;i++) 
+			/* Using L instead of strlen(str) to make code faster else 
+			 * it need to compute string length again and again */
 			{
 				char p=str[i]-'a';	
 				if((tail->next[p])==NULL)	// Making a new trie if no branch exists
@@ -120,6 +132,8 @@ int main()
 				tail=tail->next[p];
 			}
 		}
+		cache.clear(); // Clearing out the cache
+		LL cachelen=1;
 		while(1)
 		{
 			pf("Enter the word you want to search or -1 to exit\n");
@@ -127,24 +141,56 @@ int main()
 			if((str[0]=='-')&&(str[1]=='1'))
 			break;
 			for(i = 0; str[i]; i++)
+			/* Converting string to Lower case */
 			{
 				str[i] = tolower(str[i]);
 			}
 			tail=head;
-			for(i=0;i<strlen(str);i++)
+			L=strlen(str); // Length of string
+			flag=0; // Initializing Flag value
+			if(L>=10)
 			{
-				flag=0;
-				char p=str[i]-'a';
-				if(tail->next[p]==NULL)
+				if(cache.size()<10)
 				{
-					flag=-1;
-					break;
+					cache.pb(str);
+					cachelen+=1;
+					cachelen%=10;
 				}
-				if(tail->end)	// Checking whether word found or not
+				else
 				{
-					flag=1;
+					cache[cachelen]=str;
+					cachelen+=1;
+					cachelen%=10;
 				}
-				tail=tail->next[p];
+				ITER(i,cache)
+				{
+					if(*i==str)
+					{
+						pf("Found\n");
+						flag=1;
+						break;
+					}
+				}
+			}
+			if(flag!=0)
+			{
+				for(i=0;i<L;i++)
+				/* Using L instead of strlen(str) to make code faster else 
+				* it need to compute string length again and again */
+				{
+					flag=0;
+					char p=str[i]-'a';
+					if(tail->next[p]==NULL)
+					{
+						flag=-1;
+						break;
+					}
+					if(tail->end)	// Checking whether word found or not
+					{
+						flag=1;
+					}
+					tail=tail->next[p];
+				}
 			}
 			if(flag==1)
 			pf("String found\n");
