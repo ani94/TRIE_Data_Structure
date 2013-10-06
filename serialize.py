@@ -55,7 +55,7 @@ try:
 	TR=cPickle.load(newt)
 except IOError:
 	# Opening Data File
-	List =open("data.txt").readlines()
+	List =open("11million.txt").readlines()
 	inp=[]
 	# Code to remove \n from the file
 	for i in List:
