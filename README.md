@@ -42,12 +42,12 @@ Instructions on running the code
 ================================
 
 * For running `main.cpp` 
-..* `g++ main.cpp`
-..* `./a.out`
+	* `g++ main.cpp`
+	* `./a.out`
 
 * For running `code_for_inp.cpp` 
-..* `g++ code_for_inp.cpp`
-..* `./a.out < medium_in_58110`
+	* `g++ code_for_inp.cpp`
+	* `./a.out < medium_in_58110`
 
 * For running `serialize.py` 
-..* `python serialize.py`
+	* `python serialize.py`
