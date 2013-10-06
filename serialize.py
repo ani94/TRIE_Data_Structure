@@ -53,6 +53,7 @@ try:
 	# Getting Data Back from Secondary file  So avoids makin trie again and again
 	newt=open("result.txt",'r')
 	TR=cPickle.load(newt)
+	newt.close()
 except IOError:
 	# Opening Data File
 	List =open("11million.txt").readlines()
