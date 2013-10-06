@@ -19,9 +19,35 @@ have a common prefix of the string associated with that node, and the root is as
 Values are normally not associated with every node, only with leaves and some inner nodes that correspond to 
 keys of interest.
 
+**I have implemented Trie in C++ and Python**
 
 File Structure
 ===============
 
-main.cpp - User Interface code File  - Trie Implemented
-code_for_inp.cpp - File Oriented Main code File - Trie + Cache Implemented
+* main.cpp - User Interface code File  - Trie Implemented
+* code_for_inp.cpp - File Oriented Main code File - Trie + Cache Implemented
+* serialize.py - Code for serializing the data for fast processing 
+* 11million.txt - Text file which contains 11 million data words .
+* result.txt - File Containing Serialized Data 
+* medium_in_58110 - File containing 58110 words
+
+Prerequisites of System 
+========================
+
+* Python Interpreter
+* G++ compiler
+* CPickle Python Library
+
+Instructions on running the code 
+================================
+
+* For running `main.cpp` 
+..* `g++ main.cpp`
+..* `./a.out`
+
+* For running `code_for_inp.cpp` 
+..* `g++ code_for_inp.cpp`
+..* `./a.out < medium_in_58110`
+
+* For running `serialize.py` 
+..* `python serialize.py`
