@@ -27,9 +27,9 @@ File Structure
 * main.cpp - User Interface code File  - Trie Implemented
 * code_for_inp.cpp - File Oriented Main code File - Trie + Cache Implemented
 * serialize.py - Code for serializing the data for fast processing 
-* 11million.txt - Text file which contains 11 million data words .
 * result.txt - File Containing Serialized Data 
-* medium_in_58110 - File containing 58110 words
+* user_inp_pyt.py - User input in python . Valid for any type of string .
+* 160_mill.py - Code for running trie on 160 million words.
 
 Prerequisites of System 
 ========================
@@ -51,3 +51,26 @@ Instructions on running the code
 
 * For running `serialize.py` 
 	* `python serialize.py`
+
+* For running `serialize.py` 
+	* `python serialize.py`
+
+* For running `user_inp_pyt.py` 
+	* `python user_inp_pyt.py`
+
+
+* For running `160_mill.py` 
+	* `python 160_mill.py` 
+
+Testing Conditions
+=================
+
+Tested on files of size 160 million .
+
+Testing Environment
+===================
+
+* Primary memory : 1.8 GB
+* Swap : 0
+* Dual Core Pentium Processor
+
