@@ -52,11 +52,13 @@ def in_trie(trie,word):
 try:
 	# Getting Data Back from Secondary file  So avoids makin trie again and again
 	newt=open("result.txt",'r')
+	print "Fetching from secondary memory ... "
 	TR=cPickle.load(newt)
 	newt.close()
 except IOError:
 	# Opening Data File
-	List =open("11million.txt").readlines()
+	print "Making of trie"
+	List =open("20million.txt").readlines()
 	inp=[]
 	# Code to remove \n from the file
 	for i in List:
