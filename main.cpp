@@ -89,6 +89,7 @@ int main()
 	LL T;
 	LL N,i,L,flag;
 	char str[20];
+	pf("Works only for charachter input as used tolower() function to make string handling efficient\n");
 	while(1)
 	{
 		trie *head,*tail;
